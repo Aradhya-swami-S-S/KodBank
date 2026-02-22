@@ -10,6 +10,8 @@ router.post('/register', async (req, res) => {
   try {
     const { username, email, password, phone } = req.body;
 
+    console.log('Registration attempt for:', username, email);
+
     if (!username || !email || !password || !phone) {
       return res.status(400).json({ message: 'All fields are required' });
     }
@@ -21,6 +23,7 @@ router.post('/register', async (req, res) => {
     );
 
     if (existing.length > 0) {
+      console.log('User already exists');
       return res.status(400).json({ message: 'Username or email already exists' });
     }
 
@@ -33,8 +36,11 @@ router.post('/register', async (req, res) => {
       [username, email, hashedPassword, phone, 'customer', 100000]
     );
 
+    console.log('Registration successful for:', username);
+
     res.status(201).json({ message: 'Registration successful' });
   } catch (error) {
+    console.error('Registration error:', error);
     res.status(500).json({ message: 'Registration failed', error: error.message });
   }
 });
@@ -43,6 +49,8 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
+
+    console.log('Login attempt for username:', username);
 
     if (!username || !password) {
       return res.status(400).json({ message: 'Username and password are required' });
@@ -54,6 +62,8 @@ router.post('/login', async (req, res) => {
       [username]
     );
 
+    console.log('Users found:', users.length);
+
     if (users.length === 0) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
@@ -62,6 +72,8 @@ router.post('/login', async (req, res) => {
 
     // Verify password
     const isValid = await bcrypt.compare(password, user.password);
+
+    console.log('Password valid:', isValid);
 
     if (!isValid) {
       return res.status(401).json({ message: 'Invalid credentials' });
@@ -92,11 +104,15 @@ router.post('/login', async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       maxAge: 3600000 // 1 hour
     });
 
+    console.log('Login successful for:', user.username);
+
     res.json({ message: 'Login successful', username: user.username });
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({ message: 'Login failed', error: error.message });
   }
 });
