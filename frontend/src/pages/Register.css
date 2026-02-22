@@ -1,0 +1,286 @@
+:root[data-theme="light"] {
+  --register-bg: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  --register-text: #78350f;
+  --register-text-secondary: #92400e;
+  --register-card-bg: #ffffff;
+  --register-feature-bg: rgba(120, 53, 15, 0.1);
+  --register-feature-border: rgba(120, 53, 15, 0.2);
+  --register-badge-bg: rgba(120, 53, 15, 0.15);
+}
+
+:root[data-theme="dark"] {
+  --register-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --register-text: #f1f5f9;
+  --register-text-secondary: #cbd5e1;
+  --register-card-bg: #1e293b;
+  --register-feature-bg: rgba(241, 245, 249, 0.05);
+  --register-feature-border: rgba(241, 245, 249, 0.1);
+  --register-badge-bg: rgba(241, 245, 249, 0.1);
+}
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: var(--register-bg);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-floating {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--register-card-bg);
+  border: 2px solid #fbbf24;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle-floating:hover {
+  transform: scale(1.1) rotate(15deg);
+}
+
+.register-content {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+  align-items: center;
+  z-index: 1;
+}
+
+.register-info {
+  flex: 1;
+  color: var(--register-text);
+}
+
+.brand-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--register-text);
+}
+
+.brand-tagline {
+  font-size: 20px;
+  margin-bottom: 40px;
+  color: var(--register-text-secondary);
+}
+
+.benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s;
+}
+
+.benefit-item:hover {
+  transform: translateX(10px);
+  border-color: rgba(251, 191, 36, 0.5);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.benefit-icon {
+  font-size: 32px;
+  min-width: 40px;
+}
+
+.benefit-item h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--register-text);
+}
+
+.benefit-item p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--register-text-secondary);
+}
+
+.trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: var(--register-text);
+}
+
+.register-box {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 450px;
+  animation: slideIn 0.5s ease;
+  border: 2px solid rgba(251, 191, 36, 0.3);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.register-box h2 {
+  color: var(--register-text);
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.register-subtitle {
+  color: var(--register-text-secondary);
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: var(--register-text);
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  font-size: 16px;
+  transition: all 0.3s;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: var(--register-text);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #fbbf24;
+  box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(251, 191, 36, 0.5);
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 2px solid rgba(239, 68, 68, 0.3);
+  font-size: 14px;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 25px;
+  color: var(--register-text-secondary);
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #f59e0b;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 968px) {
+  .register-content {
+    flex-direction: column;
+  }
+
+  .register-info {
+    text-align: center;
+  }
+
+  .brand-title {
+    font-size: 36px;
+  }
+
+  .benefits-list {
+    max-width: 500px;
+    margin: 0 auto 30px;
+  }
+
+  .benefit-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .trust-badges {
+    justify-content: center;
+  }
+}
